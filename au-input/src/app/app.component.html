@@ -16,25 +16,45 @@
 </header>
 
 <body>
-<div class="container">
-  <h1>Font Awesome</h1>
+  <div class="container">
+    <h1>Font Awesome</h1>
 
-<div class="form">
+    <div class="form">
 
-  <div class="form-row">
-      <label>Normal Input:</label>
-      <input class="normal-input" type="email" name="email" placeholder="E-mail">
+      <div class="form-row">
+        <label>Test:</label>
+          <input placeholder="Test">
+      </div>
+      <div class="form-row">
+        <label>Email:</label>
+        <au-fa-input icon="envelope">
+          <input placeholder="E-mail">
+        </au-fa-input>
+      </div>
+      <div class="form-row">
+        <label>Password:</label>
+        <au-fa-input icon="lock">
+          <!--component projection which preserve own styles-->
+          <input #input placeholder="Password">
+        </au-fa-input>
+      </div>
+      <div class="form-row">
+        <label>Stripe:</label>
+        <au-fa-input icon="cc-stripe">
+          <input placeholder="Stripe">
+        </au-fa-input>
+      </div>
+
+      <div class="form-row">
+        <label>PayPal:</label>
+        <au-fa-input icon="paypal">
+          <input #input placeholder="PayPal">
+        </au-fa-input>
+      </div>
+    </div>
+
+
   </div>
-
-</div>
-
-
-
-
-
-
-
-</div>
 
 </body>
 

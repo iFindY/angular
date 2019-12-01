@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import {HttpClientModule} from "@angular/common/http";
+import { AuFaInputComponent } from './lib/au-fa-input/au-fa-input.component';
+import { InputRefDirective } from './lib/common/input-ref.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuFaInputComponent,
+    InputRefDirective
   ],
   imports: [
     BrowserModule,
