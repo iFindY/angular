@@ -10,18 +10,15 @@ export class AuFaInputComponent implements OnInit, AfterContentInit {
 
   @Input()
   icon: string;
-
-  // search the presented dom for input element reference
-  @ContentChild(InputRefDirective, { static: false })
+  
+  @ContentChild(InputRefDirective, { static: false }) // search the presented dom for input element reference
   input: InputRefDirective;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  get classes(): any {
+  get classes(): any { // emulate 
     const cssClasses = {};
     if (this.icon) {
       cssClasses['fa-' + this.icon] = true; // extend object with new property
@@ -31,7 +28,7 @@ export class AuFaInputComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(): void {
     if (!this.input) {
-      console.error('the ua-fa-input component need content inside its container ')
+      console.error('the ua-fa-input component need content inside its container')
     }
   }
 

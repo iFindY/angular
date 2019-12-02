@@ -17,7 +17,6 @@
 /* add state class css  to host element */
 :host(.input-focus) { /* if input-focus is true, is added, then style */
   outline: none;
-
   border-width: 1px;
   border-style: solid;
   border-color: #4D90FE;
