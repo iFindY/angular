@@ -1,0 +1,11 @@
+$border-color: red;
+
+
+:host-context(.au-fa-input-red-theme) { /* if this class is present in html apply red border*/
+  border-color: $border-color;
+
+  &.input-focus {
+    -webkit-box-shadow: 0px 0px 5px $border-color;
+    box-shadow: 0px 0px 5px $border-color;
+  }
+}

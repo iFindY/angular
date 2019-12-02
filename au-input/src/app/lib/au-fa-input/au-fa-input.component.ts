@@ -4,13 +4,13 @@ import { InputRefDirective } from '../common/input-ref.directive';
 @Component({
   selector: 'au-fa-input',
   templateUrl: './au-fa-input.component.html',
-  styleUrls: ['./au-fa-input.component.css']
+  styleUrls: ['./_au-fa-input.component.scss']
 })
 export class AuFaInputComponent implements OnInit, AfterContentInit {
 
   @Input()
   icon: string;
-  
+
   @ContentChild(InputRefDirective, { static: false }) // search the presented dom for input element reference
   input: InputRefDirective;
 
@@ -18,7 +18,7 @@ export class AuFaInputComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {}
 
-  get classes(): any { // emulate 
+  get classes(): any { // emulate
     const cssClasses = {};
     if (this.icon) {
       cssClasses['fa-' + this.icon] = true; // extend object with new property
