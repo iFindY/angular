@@ -1,0 +1,33 @@
+
+
+.icon {
+  width: 20px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 2px;
+  border: none;
+}
+
+/* style host pseudo selector -> our-fa-input html elements like input and icon */
+:host {
+  border-width: 1px;
+  border-style: solid;
+  padding: 1px 0 1px 0; /*top right left bottom   height: 100%; /* center input field text top bottom */
+  display: inline-block; /*set host element as inline block which is an inline element with block attributes like height and width */
+}
+
+/* add state class css  to host element */
+:host(.input-focus) { /* if input-focus is true, is added, then style */
+  outline: none;
+}
+
+/* any input inside font awesome component should have no border */
+/* :host input anny input which is part of this host template should apply this styles. exclude projection */
+/*::ng-deep style all content on the page. with host as prefix only our component is styled */
+:host ::ng-deep input {
+  border: none; /*use my styles not this one */
+  outline: none; /*use my styles not this one */
+  height: 100%; /* center input field text top bottom | safari */
+  margin: 1px 0; /*optional */
+  box-sizing: border-box; /* optional: */
+}
