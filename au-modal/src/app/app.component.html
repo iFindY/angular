@@ -17,9 +17,10 @@
   <div class="container">
     <h1>Modal Examples</h1>
 
-    <ng-template #authModalBody>
+    <ng-template #authModalBody let-title="title" let-loginTabActive="loginTabActive"> <!-- define template variable | define multiple properties accessible via context with let- -->
+      <h5>{{title}}</h5>
       <au-tab-panel>
-        <au-tab title="Login">  <!--take tow au input fields -->
+        <au-tab title="Login" [selected]="loginTabActive">
           <form>
             <div class="form-field">
               <au-fa-input id="email-field" icon="envelope">
@@ -35,7 +36,7 @@
             </div>
           </form>
         </au-tab>
-        <au-tab title="Sign Up"> <!--take three au input fields -->
+        <au-tab title="Sign Up" [selected]="!loginTabActive"> <!--take three au input fields -->
           <form>
             <div class="form-field">
               <au-fa-input icon="envelope">
@@ -60,14 +61,18 @@
       </au-tab-panel>
     </ng-template>
 
-    <au-modal #modal [hiddenOnClickOutside]="false" [hiddenOnEsc]="true" [body]="authModalBody" *auModalOpenOnClick="[loginButton,signUpButton]">
+    <au-modal #modal [hiddenOnClickOutside]="false"
+              [hiddenOnEsc]="true"
+              [body]="authModalBody"
+              [context]="{title:'Login or Sign Up',loginTabActive:loginActive}"
+              *auModalOpenOnClick="[loginButton,signUpButton]">
       <i class="fa fa-times" (click)="modal.close()"></i> <!-- trigger method above -->
     </au-modal>
 
 
     <div class="modal-buttons">
-      <button #loginButton>Login</button>
-      <button #signUpButton>Sign Up</button>
+      <button #loginButton (click)="setLoginActive(true)">Login</button>
+      <button #signUpButton (click)="setLoginActive(false)">Sign Up</button>
     </div>
 
   </div>

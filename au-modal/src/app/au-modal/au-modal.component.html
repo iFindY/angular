@@ -6,7 +6,7 @@
     </div>
 
     <ng-container *ngIf="body else projectContent">
-      <ng-container *ngTemplateOutlet="body"></ng-container>
+      <ng-container *ngTemplateOutlet="body;context:context"></ng-container> <!--hold parameters of the ng-template-->
     </ng-container>
     <ng-template #projectContent>
       <ng-content></ng-content> <!--take content which have not benn selected like above -->

@@ -9,14 +9,10 @@ import { EventManager } from '@angular/platform-browser';
 })
 export class AuModalComponent implements OnInit {
 
-  @Input()
-  body: TemplateRef<any>;
-
-  @Input()
-  hiddenOnEsc = true;
-
-  @Input()
-  hiddenOnClickOutside = true;
+  @Input() body: TemplateRef<any>;
+  @Input() hiddenOnEsc = true;
+  @Input() hiddenOnClickOutside = true;
+  @Input() context: any;
 
   constructor(private modalService: AuModalService,
               private eventManager: EventManager) {

@@ -1,10 +1,12 @@
-import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuModalService } from './au-modal.service';
 
 @Directive({
   selector: '[auModalOpenOnClick]'
 })
-export class AuModalOpenOnClickDirective implements OnInit {
+export class AuModalOpenOnClickDirective implements OnInit, OnDestroy {
+
+  elements: HTMLBaseElement[];
 
   /**
    * all structural directive need this.
@@ -19,18 +21,23 @@ export class AuModalOpenOnClickDirective implements OnInit {
 
   @Input()
   set auModalOpenOnClick(els) {
-    let elements: HTMLBaseElement[];
-    elements = els.length ? els : [els];
+    this.elements = els.length ? els : [els];
 
-    elements.forEach(el => {
-      el.addEventListener('click', () => {
-        this.viewContainer.clear();
-        this.viewContainer.createEmbeddedView(this.templateRef)
-      })
+    this.elements.forEach(el => {
+      el.addEventListener('click', () => this.clickHandler())
     })
   }
 
   ngOnInit(): void {
     this.modalService.close$.subscribe(() => this.viewContainer.clear());
   }
+
+  ngOnDestroy(): void {
+    this.elements.forEach(el => el.removeEventListener('click', this.clickHandler))
+  }
+
+  clickHandler = (() => { // be sure  that this object exists this always populated
+    this.viewContainer.clear();
+    this.viewContainer.createEmbeddedView(this.templateRef)
+  }).bind(this)
 }
