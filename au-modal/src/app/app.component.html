@@ -17,7 +17,6 @@
 
 <body>
   <div class="container">
-
     <h1>Modal Examples</h1>
 
     <ng-template #authModalBody>
@@ -63,8 +62,11 @@
       </au-tab-panel>
     </ng-template>
 
-    <au-modal class="auth-modal" [body]="authModalBody" *ngIf="true">
-    </au-modal>
+    <ng-template [auModalOpenOnClick]="[loginButton,signUpButton]">
+      <au-modal class="auth-modal" [body]="authModalBody"></au-modal>
+    </ng-template>
+
+
     <div class="modal-buttons">
       <button #loginButton>Login</button>
       <button #signUpButton>Sign Up</button>

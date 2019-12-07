@@ -5,15 +5,12 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
   templateUrl: './au-modal.component.html',
   styleUrls: ['./au-modal.component.scss']
 })
-export class AuModalComponent implements OnInit {
+export class AuModalComponent  {
 
   @Input()
   body: TemplateRef<any>;
 
-  constructor() {
-  }
+  closeModal() {
 
-  ngOnInit() {
   }
-
 }
