@@ -12,7 +12,7 @@ export class AuMdInputComponent implements AfterContentInit {
     @Input()
     icon: string;
 
-    @ContentChild(InputRefDirective, {static:false})
+    @ContentChild(InputRefDirective)
     input: InputRefDirective;
 
     ngAfterContentInit() {
