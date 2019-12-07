@@ -5,14 +5,12 @@
         <img class="v-center-block logo-small angular-university-logo"
              src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
              data-pin-nopin="true">
-
       </a>
     </li>
     <li>
       <a>Modal</a>
     </li>
   </ul>
-
 </header>
 
 <body>
@@ -62,7 +60,7 @@
       </au-tab-panel>
     </ng-template>
 
-      <au-modal class="auth-modal" [body]="authModalBody" *auModalOpenOnClick="[loginButton,signUpButton]"></au-modal>
+    <au-modal [hiddenOnClickOutside]="false" [hiddenOnEsc]="true" [body]="authModalBody" *auModalOpenOnClick="[loginButton,signUpButton]"></au-modal>
 
 
     <div class="modal-buttons">

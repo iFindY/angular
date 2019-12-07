@@ -19,8 +19,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     AuInputModule,
     AuTabPanelModule,
-    AuModalModule
-
+    AuModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
-import { AfterContentInit, ContentChild, Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuModalComponent } from './au-modal.component';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { AuModalService } from './au-modal.service';
 
 @Directive({
   selector: '[auModalOpenOnClick]'
 })
-export class AuModalOpenOnClickDirective {
+export class AuModalOpenOnClickDirective implements OnInit {
 
   /**
    * all structural directive need this.
@@ -13,8 +13,8 @@ export class AuModalOpenOnClickDirective {
    * can handle only ng-templates
    */
   constructor(private templateRef: TemplateRef<any>,
-              private viewContainer: ViewContainerRef //one or more view can be attached
-  ) {
+              private viewContainer: ViewContainerRef,
+              private modalService: AuModalService) {
   }
 
   @Input()
@@ -28,5 +28,9 @@ export class AuModalOpenOnClickDirective {
         this.viewContainer.createEmbeddedView(this.templateRef)
       })
     })
+  }
+
+  ngOnInit(): void {
+    this.modalService.close$.subscribe(() => this.viewContainer.clear());
   }
 }
