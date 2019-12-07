@@ -1,6 +1,4 @@
-
 $secondary: rgba(0, 0, 0, 0.117647);
-
 
 
 .modal-body {
@@ -11,7 +9,7 @@ $secondary: rgba(0, 0, 0, 0.117647);
   transform: translate(-50%, -50%);
   z-index: 20;
   $border: 1px solid $secondary;
-  border:$border;
+  border: $border;
   border-radius: 4px;
   background: white;
   box-shadow: 0 1px 16px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.14), 0 4px 8px -1px rgba(0, 0, 0, 0.12);
@@ -20,21 +18,21 @@ $secondary: rgba(0, 0, 0, 0.117647);
 
 .modal-overlay {
   display: inline-block;
-  position: fixed;  /* if scroll overlay stay on top */
+  position: fixed; /* if scroll overlay stay on top */
   width: 100%;
   height: 100%; /* take whol page*/
   left: 0; /* position */
   top: 0;
-  background: rgba(51,51,51,0.7);
+  background: rgba(51, 51, 51, 0.7);
   z-index: 10; /* higher then page content*/
 }
 
 :host .close-icon {
   width: 100%;
-  height: 20px;
+  height: 1px;
 }
 
-:host .close-icon::ng-deep i  {
+:host .close-icon::ng-deep i {
   cursor: pointer;
   position: fixed;
   right: 5px;

@@ -22,7 +22,7 @@ export class AuModalComponent implements OnInit {
               private eventManager: EventManager) {
   }
 
-  closeModal() {
+  close() {
     this.modalService.close();
   }
 
@@ -33,12 +33,12 @@ export class AuModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventManager.addGlobalEventListener('window', 'keyup.esc', () => {
-      if (this.hiddenOnEsc) this.closeModal();
+      if (this.hiddenOnEsc) this.close();
     })
 
   }
 
   onClickOutsideModal() {
-    if (this.hiddenOnClickOutside) this.closeModal();
+    if (this.hiddenOnClickOutside) this.close();
   }
 }
