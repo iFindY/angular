@@ -62,12 +62,17 @@ export class MaskDirective implements OnInit {
   }
 
   handelDelete(cursorPosition) {
-    let nextCurPos = this.getNextRightCurPosition(cursorPosition);
+    const nextCurPos = this.getNextRightCurPosition(cursorPosition),
+      validPosition = (cursorPosition != undefined &&
+        cursorPosition < this.input.value.length &&
+        this.input.value[cursorPosition] !== '_'),
+      nextValidPosition = (nextCurPos != undefined &&
+        this.input.value[cursorPosition] === '_');
 
-    if (cursorPosition != undefined && this.input.value[cursorPosition] !== '_') {
+    if (validPosition) {
       overrideCharAtPosition(this.input, cursorPosition, '_');
       this.input.setSelectionRange(cursorPosition, cursorPosition);
-    } else if (nextCurPos != undefined && this.input.value[cursorPosition] === '_') {
+    } else if (nextValidPosition) {
       overrideCharAtPosition(this.input, nextCurPos, '_');
       this.input.setSelectionRange(nextCurPos, nextCurPos);
 
