@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { BACKSPACE, DELETE, LEFT_ARROW, overrideCharAtPosition, RIGHT_ARROW, SPECIAL_CHARACTERS, TAB } from './mask.utils';
 import { el } from '@angular/platform-browser/testing/src/browser_util';
-import { maskDigitValidators, neverValidator } from './digit-validaotr';
+import { dateValidator, maskDigitValidators, neverValidator } from './digit-validaotr';
 
 @Directive({
   selector: '[mask]'
@@ -21,8 +21,20 @@ export class MaskDirective implements OnInit {
     this.input.value = this.buildPlaceHolder();
   }
 
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault();
+    const pastedInput: string = event.clipboardData.getData('text/plain');
+
+    if (dateValidator(pastedInput)) {
+      this.input.value= '';
+      document.execCommand('insertText', false, pastedInput);
+    }
+  }
+
   @HostListener('keydown', ['$event', '$event.keyCode'])
   onKeyDownEvent($event: KeyboardEvent, keyCode) {
+    if ($event.metaKey || $event.ctrlKey) return;
     if (keyCode !== TAB) $event.preventDefault();
 
     const key = String.fromCharCode(keyCode),
