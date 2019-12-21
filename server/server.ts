@@ -7,6 +7,7 @@ import { createUser } from './create-user.route';
 import { getUser } from './get-user.route';
 import { logOut } from './logout.rout';
 import { logIn } from './login.rout';
+import { checkCsrfToken } from './csrf.midleware';
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -38,8 +39,7 @@ app.route('/api/logout')
   .post(logOut);
 
 app.route('/api/login')
-  .post(logIn);
-
+  .post(checkCsrfToken, logIn);
 
 if (options.secure) {
 

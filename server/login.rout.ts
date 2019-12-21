@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { db } from './database';
 import { DbUser } from './db-user';
 import *  as argon2 from 'argon2';
-import { randomBytes } from './security.utils';
+import { createCsrfToken, randomBytes } from './security.utils';
 import { sessionStore } from './session.store';
 
 export function logIn(req: Request, res: Response) {
@@ -19,10 +19,12 @@ async function LoginAndBuildResponse(credentials: any, user: DbUser, res: Respon
   try {
     const sessionId = await attemptLogin(credentials, user);
     console.log('Login successful');
+    const csrfToken = createCsrfToken(sessionId);
+    res.cookie('XSRF-TOKEN', csrfToken);
     res.cookie('SESSIONID', sessionId, { httpOnly: true, secure: true });
     res.status(200).json({ id: user.id, email: user.email });
   } catch (e) {
-    console.log('Logthrow newin fail');
+    console.log('Login fail');
 
     res.sendStatus(403);
   }
