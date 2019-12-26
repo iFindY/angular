@@ -63,16 +63,16 @@ export class EditCourseDialogComponent {
   onSave() {
 
     const course: Course = {
-      ...this.course,
-      ...this.form.value
+      ...this.course, // copy course object 
+      ...this.form.value // override course fields with. form fields 
     };
 
-    const update: Update<Course> = {
+    const update: Update<Course> = { // new object with changes from form 
       id: course.id,
       changes: course
     };
 
-    this.store.dispatch(courseUpdated({update}));
+    this.store.dispatch(courseUpdated({update}));// dispatch update action with updated course
 
     this.dialogRef.close();
 

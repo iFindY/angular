@@ -4,8 +4,8 @@ import {createReducer, on} from '@ngrx/store';
 import {CourseActions} from '../action-types';
 
 
-export interface CoursesState extends EntityState<Course> {
-    allCoursesLoaded: boolean
+export interface CoursesState extends EntityState<Course> { // CoursesState is  an entity 
+    allCoursesLoaded: boolean // extra state
 }
 
 
@@ -15,7 +15,7 @@ export const adapter = createEntityAdapter<Course>({
 
 
 export const initialCoursesState = adapter.getInitialState({
-    allCoursesLoaded:false
+    allCoursesLoaded:false 
 });
 
 
@@ -26,18 +26,18 @@ export const coursesReducer = createReducer(
     on(CourseActions.allCoursesLoaded,
         (state, action) => adapter.addAll(
             action.courses,
-            {...state,
+            {...state, // create new copy of sate object and override allCoursesLoaded to true 
                 allCoursesLoaded:true
             })),
 
 
     on(CourseActions.courseUpdated, (state, action) =>
-        adapter.updateOne(action.update, state) )
+        adapter.updateOne(action.update, state) ) // update the state with  action.update course object 
 
 );
 
 
-export const {
+export const { 
     selectAll
-} = adapter.getSelectors();
+} = adapter.getSelectors(); // returns a list of selectors and we want to export only the selectAll selector.
 

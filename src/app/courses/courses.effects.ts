@@ -9,13 +9,13 @@ import {allCoursesLoaded} from './course.actions';
 @Injectable()
 export class CoursesEffects {
 
-    loadCourses$ = createEffect(
-        () => this.actions$
+    loadCourses$ = createEffect(  // effects have to dispatch an action
+        () => this.actions$ 
             .pipe(
                 ofType(CourseActions.loadAllCourses),
-                concatMap(action =>
+                concatMap(action => // concatMap send only one request at a time 
                     this.coursesHttpService.findAllCourses()),
-                map(courses => allCoursesLoaded({courses}))
+                map(courses => allCoursesLoaded({courses})) // this effect have to return an action 
 
             )
     );
@@ -25,12 +25,12 @@ export class CoursesEffects {
         () => this.actions$
             .pipe(
                 ofType(CourseActions.courseUpdated),
-                concatMap(action => this.coursesHttpService.saveCourse(
+                concatMap(action => this.coursesHttpService.saveCourse( // only perform this operation if current operation finished 
                     action.update.id,
                     action.update.changes
                 ))
             ),
-        {dispatch: false}
+        {dispatch: false} // cancel dispatching of an expected action 
     );
 
     constructor(private actions$: Actions,

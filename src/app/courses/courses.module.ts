@@ -37,13 +37,13 @@ export const coursesRoutes: Routes = [
     path: '',
     component: HomeComponent,
     resolve: {
-        courses: CoursesResolver
+        courses: CoursesResolver // courses is a name for the data with the CoursesResolver
     }
 
   },
   {
     path: ':courseUrl',
-    component: CourseComponent
+    component: CourseComponent 
   }
 ];
 

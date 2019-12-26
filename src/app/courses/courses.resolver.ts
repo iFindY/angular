@@ -22,16 +22,16 @@ export class CoursesResolver implements Resolve<any> {
 
         return this.store
             .pipe(
-                select(areCoursesLoaded),
-                tap(coursesLoaded => {
+                select(areCoursesLoaded), // select custom coursesLoaded state 
+                tap(coursesLoaded => { // at this point courses are not loaded 
                     if (!this.loading && !coursesLoaded) {
                         this.loading = true;
                         this.store.dispatch(loadAllCourses());
                     }
                 }),
-                filter(coursesLoaded => coursesLoaded),
-                first(),
-                finalize(() => this.loading = false)
+                filter(coursesLoaded => coursesLoaded), // only if courses are loaded, terminate observable and show page 
+                first(), // after first value is emitted the observable completes (stop listening on new values) and operation can be finished.
+                finalize(() => this.loading = false) // on success or error we set the flag in both cases  
             );
 
     }

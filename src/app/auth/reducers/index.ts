@@ -18,7 +18,7 @@ export const initialAuthState: AuthState = {
     user: undefined
 };
 
-export const authReducer = createReducer(
+export const authReducer = createReducer<AuthState>(
 
     initialAuthState,
 

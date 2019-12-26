@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {CoursesState} from './reducers/course.reducers';
 
-import * as fromCourses from './reducers/course.reducers';
+import * as fromCourses from './reducers/course.reducers'; // can access all exported const fields  
 
 
 export const selectCoursesState =

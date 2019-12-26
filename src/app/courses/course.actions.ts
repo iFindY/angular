@@ -17,6 +17,6 @@ export const allCoursesLoaded = createAction(
 
 export const courseUpdated = createAction(
   "[Edit Course Dialog] Course Updated",
-  props<{update: Update<Course>}>()
+  props<{update: Update<Course>}>() // Update is a special Type of ngRx helping update data 
 );
 
