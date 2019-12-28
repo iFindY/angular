@@ -22,7 +22,7 @@ import {AuthEffects} from './auth.effects';
         MatInputModule,
         MatButtonModule,
         RouterModule.forChild([{path: '', component: LoginComponent}]),
-        StoreModule.forFeature('auth', authReducer),
+        StoreModule.forFeature('auth', authReducer),// defines a subs tate and an corresponding reducer
         EffectsModule.forFeature([AuthEffects])
     ],
     declarations: [LoginComponent],

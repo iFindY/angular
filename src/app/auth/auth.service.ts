@@ -13,6 +13,9 @@ export class AuthService {
 
     }
 
+  /**
+   * if json body arguments are the same as inserted parameter they will be automatically casted to a User
+   */
     login(email:string, password:string): Observable<User> {
         return this.http.post<User>('/api/login', {email,password});
     }
