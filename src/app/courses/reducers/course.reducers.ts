@@ -23,7 +23,8 @@ export const adapter = createEntityAdapter<Course>({
 });
 
 /**
- * define initial courses state linked to the Courses entity
+ * define initial courses state linked to the Course entity
+ * add extra initial flag
  */
 export const initialCoursesState = adapter.getInitialState({
     allCoursesLoaded:false
@@ -52,6 +53,6 @@ export const coursesReducer = createReducer<CoursesState>(
 
 
 export const {
-    selectAll
-} = adapter.getSelectors(); // returns a list of selectors and we want to export only the selectAll selector.
+    selectAll // export only this const from the list
+} = adapter.getSelectors(); // returns a list of implemented common selectors and we want to export only the selectAll selector.
 
