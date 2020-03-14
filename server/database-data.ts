@@ -2,9 +2,11 @@
 
 import {DbUser} from "./db-user";
 
+// no users when server get started,
+// DBuser support type safety  of the key value map, which hold an number corresponding to a DBUser
 export const USERS: {[key:number]:DbUser} = {};
 
-
+// back end data to hold not an array
 export const LESSONS = {
 
     1: {

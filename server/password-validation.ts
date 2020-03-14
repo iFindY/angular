@@ -1,5 +1,8 @@
 
+
+// imported password validation lib
 import * as passwordValidator from 'password-validator';
+import { ValidationErrors } from '@angular/forms/src/directives/validators';
 
 
 // Create a schema
@@ -15,7 +18,7 @@ schema
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 
-
-export function validatePassword(password:string) {
+// only this function is visible and can be called return error codes like  min max uppercase
+export function validatePassword(password:string): ValidationErrors {
     return schema.validate(password, {list:true});
 }

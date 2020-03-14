@@ -1,13 +1,15 @@
 
+<!--if errors array is not empty -->
 <div class="messages messages-error" *ngIf="errors?.length">
     <div class="messages-container">
-        <div *ngFor="let error of errors">{{messagePerErrorCode[error]}}</div>
+      <!--loop over errors array defined int *.ts and for each error print message -->
+      <div *ngFor="let error of errors">{{messagePerErrorCode[error]}}</div>
     </div>
 </div>
 
 
-
-<form autocomplete="off" novalidate  [formGroup]="form">
+<!--reference created form group from *.ts file -->
+<form autocomplete="off" novalidate [formGroup]="form">
 
     <fieldset>
         <legend>Sign Up</legend>

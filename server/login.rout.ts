@@ -18,11 +18,13 @@ export function logIn(req: Request, res: Response) {
 async function LoginAndBuildResponse(credentials: any, user: DbUser, res: Response) {
   try {
     const sessionId = await attemptLogin(credentials, user);
-    console.log('Login successful');
-    const csrfToken = createCsrfToken(sessionId);
-    res.cookie('XSRF-TOKEN', csrfToken);
+    const csrfToken = await createCsrfToken(sessionId);
+
     res.cookie('SESSIONID', sessionId, { httpOnly: true, secure: true });
+    res.cookie('XSRF-TOKEN', csrfToken);
+
     res.status(200).json({ id: user.id, email: user.email });
+    console.log('Login successful');
   } catch (e) {
     console.log('Login fail');
 

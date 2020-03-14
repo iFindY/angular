@@ -25,21 +25,21 @@ const optionDefinitions = [
 
 const options = commandLineArgs(optionDefinitions);
 
-// REST API
+// REST API Rout handler
 app.route('/api/lessons')
   .get(readAllLessons);
 
 app.route('/api/signup')
-  .post(createUser);
+  .post(createUser); // import express function which will be called if this route is hit
 
 app.route('/api/user')
-  .get(getUser);
+  .get(getUser); // rout logic in get User function
 
 app.route('/api/logout')
-  .post(logOut);
+  .post(checkCsrfToken,logOut);
 
 app.route('/api/login')
-  .post(checkCsrfToken, logIn);
+  .post(logIn);
 
 if (options.secure) {
 
